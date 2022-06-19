@@ -29,6 +29,22 @@ public class UserEdit extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        UserDao userDao = new UserDao();
+        User user = userDao.read(id);
+
+        if (user == null) {
+            request.setAttribute("message", "Użytkownik o podanym ID nie istnieje");
+            getServletContext().getRequestDispatcher("/user/list").forward(request, response);
+        } else {
+            user.setUsername(request.getParameter("username"));
+            user.setEmail(request.getParameter("email"));
+            user.setPassword(request.getParameter("password"));
+            userDao.update(user);
+
+            request.setAttribute("message", "Dane użytkownika zostały zaktualizowane");
+            getServletContext().getRequestDispatcher("/user/list").forward(request, response);
+        }
 
     }
 }

@@ -17,21 +17,22 @@
         <h6 class="m-0 font-weight-bold text-primary">Edycja użytkownika</h6>
     </div>
     <div class="card-body">
-        <form>
+        <form method="post">
             <div class="form-group">
                 <label for="username">Nazwa użytkownika</label>
-                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp"  value="${user.username}">
+                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" name="username" value="${user.username}">
             </div>
             <div class="form-group">
                 <label for="email">E-mail</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp"  value="${user.email}">
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" value="${user.email}">
             </div>
             <div class="form-group">
                 <label for="password">Hasło</label>
-                <input type="password" class="form-control" id="password">
+                <input type="password" class="form-control" id="password" name="password">
             </div>
+            <input type="hidden" name="id" value="${user.id}">
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Zapisz</button>
         </form>
     </div>
 </div>
