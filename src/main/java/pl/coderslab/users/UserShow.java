@@ -1,5 +1,6 @@
 package pl.coderslab.users;
 
+import pl.coderslab.utils.User;
 import pl.coderslab.utils.UserDao;
 
 import javax.servlet.*;
@@ -14,9 +15,16 @@ public class UserShow extends HttpServlet {
 
         int id = Integer.parseInt(request.getParameter("id"));
         UserDao userDao = new UserDao();
-        request.setAttribute("user", userDao.read(id));
+        User user = userDao.read(id);
 
-        getServletContext().getRequestDispatcher("/users/show.jsp").forward(request, response);
+        if (user == null) {
+            request.setAttribute("message", "Użytkownik o podanym ID nie istnieje");
+            getServletContext().getRequestDispatcher("/user/list").forward(request, response);
+        } else {
+            request.setAttribute("user", user);
+            getServletContext().getRequestDispatcher("/users/show.jsp").forward(request, response);
+        }
+
     }
 
     @Override
