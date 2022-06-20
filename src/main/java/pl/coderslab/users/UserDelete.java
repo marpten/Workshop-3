@@ -20,10 +20,8 @@ public class UserDelete extends HttpServlet {
             request.setAttribute("message", "Użytkownik o podanym ID nie istnieje");
             getServletContext().getRequestDispatcher("/user/list").forward(request, response);
         } else {
-            // usuwanie
             userDao.delete(id);
             request.setAttribute("message", "Użytkownik został usunięty");
-            //request.setAttribute("user", user);
             getServletContext().getRequestDispatcher("/user/list").forward(request, response);
         }
     }

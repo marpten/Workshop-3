@@ -12,7 +12,7 @@
 
 <c:if test="${not empty message}">
     <div class="alert alert-warning" role="alert">
-        ${message}
+            ${message}
     </div>
 </c:if>
 
@@ -62,6 +62,11 @@
 
                 </tbody>
             </table>
+            <c:if test="${empty users}">
+                <div class="alert alert-light" role="alert">
+                    Brak danych do wypisania.
+                </div>
+            </c:if>
         </div>
     </div>
 </div>
